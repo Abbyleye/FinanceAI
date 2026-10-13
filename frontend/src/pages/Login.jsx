@@ -1,13 +1,17 @@
+
+import { Link } from "react-router-dom"
+
 function Login() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6">
-
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
-
         <div className="text-center">
+         <Link to="/">
           <h1 className="text-3xl font-bold text-blue-600">
             FinanceAI
+
           </h1>
+          </Link>
 
           <h2 className="mt-6 text-2xl font-bold text-gray-900">
             Welcome Back
@@ -19,7 +23,6 @@ function Login() {
         </div>
 
         <form className="mt-8">
-
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Email
@@ -42,6 +45,15 @@ function Login() {
               placeholder="Enter your password"
               className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-600"
             />
+
+            <div className="mt-2 text-right">
+              <Link
+                to="/forgot-password"
+                className="text-sm font-medium text-blue-600 hover:text-blue-800"
+              >
+                Forgot Password?
+              </Link>
+            </div>
           </div>
 
           <button
@@ -50,18 +62,18 @@ function Login() {
           >
             Login
           </button>
-
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Don't have an account?{" "}
-          <a href="/register" className="font-semibold text-blue-600">
+          <Link
+            to="/register"
+            className="font-semibold text-blue-600"
+          >
             Create one
-          </a>
+          </Link>
         </p>
-
       </div>
-
     </div>
   )
 }
