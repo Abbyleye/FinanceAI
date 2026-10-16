@@ -1,4 +1,3 @@
-
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, EmailStr, Field, field_validator
 from sqlalchemy.exc import IntegrityError
@@ -6,7 +5,11 @@ from sqlalchemy.orm import Session
 
 from database import SessionLocal
 from models import User
-from security import hash_password, verify_password
+from security import (
+    create_access_token,
+    hash_password,
+    verify_password,
+)
 
 router = APIRouter()
 
@@ -48,6 +51,14 @@ class LoginRequest(BaseModel):
         return value.lower()
 
 
+def user_response(user: User):
+    return {
+        "id": user.id,
+        "full_name": user.full_name,
+        "email": user.email,
+    }
+
+
 @router.post("/auth/register", status_code=201)
 def register_user(
     user_data: RegisterRequest,
@@ -84,11 +95,7 @@ def register_user(
 
     return {
         "message": "Account created successfully.",
-        "user": {
-            "id": user.id,
-            "full_name": user.full_name,
-            "email": user.email,
-        },
+        "user": user_response(user),
     }
 
 
@@ -121,11 +128,11 @@ def login_user(
             detail="This account is inactive.",
         )
 
+    access_token = create_access_token(user.id)
+
     return {
         "message": "Login successful.",
-        "user": {
-            "id": user.id,
-            "full_name": user.full_name,
-            "email": user.email,
-        },
+        "access_token": access_token,
+        "token_type": "bearer",
+        "user": user_response(user),
     }
