@@ -1,10 +1,10 @@
-
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import DashboardLayout from "./pages/DashboardLayout";
 import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
@@ -12,7 +12,6 @@ import Demo from "./pages/Demo";
 
 function ProtectedRoute({ children }) {
   const token = sessionStorage.getItem("financeai_access_token");
-
   return token ? children : <Navigate to="/login" replace />;
 }
 
@@ -39,7 +38,9 @@ function App() {
           path="/profile"
           element={
             <ProtectedRoute>
-              <Profile />
+              <DashboardLayout>
+                <Profile />
+              </DashboardLayout>
             </ProtectedRoute>
           }
         />
@@ -48,7 +49,9 @@ function App() {
           path="/settings"
           element={
             <ProtectedRoute>
-              <Settings />
+              <DashboardLayout>
+                <Settings />
+              </DashboardLayout>
             </ProtectedRoute>
           }
         />

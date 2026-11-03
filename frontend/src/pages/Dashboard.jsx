@@ -84,7 +84,7 @@ const secondaryButtonStyle =
 
 const navLinkStyle =
 
-  "flex items-center gap-3 rounded-xl px-4 py-3 text-slate-600 transition hover:bg-emerald-50 hover:text-[#087F5B]";
+  "flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-600 transition hover:bg-emerald-50 hover:text-[#087F5B]";
 
 function getToday() {
 
@@ -385,44 +385,6 @@ function Dashboard() {
     ([name, value]) => ({ name, value })
 
   );
-  // Previous month's spending
-const previousMonthDate = new Date(
-  now.getFullYear(),
-  now.getMonth() - 1,
-  1
-);
-
-const previousMonthSpending = expenses.reduce((total, expense) => {
-  if (!expense.date) return total;
-
-  const expenseDate = new Date(`${expense.date}T12:00:00`);
-
-  if (
-    expenseDate.getMonth() === previousMonthDate.getMonth() &&
-    expenseDate.getFullYear() === previousMonthDate.getFullYear()
-  ) {
-    return total + Number(expense.amount || 0);
-  }
-
-  return total;
-}, 0);
-
-// Monthly spending change
-const monthlyChange =
-  previousMonthSpending > 0
-    ? ((monthlySpending - previousMonthSpending) /
-        previousMonthSpending) * 100
-    : null;
-
-// Highest spending category
-const highestSpendingCategory = Object.entries(categorySpending)
-  .sort((a, b) => b[1] - a[1])[0];
-
-// Budget progress
-const budgetProgress =
-  monthlyBudget > 0
-    ? Math.min(100, Math.max(0, (monthlySpending / monthlyBudget) * 100))
-    : 0;
 
   const filteredExpenses = expenses.filter((expense) => {
 
@@ -796,13 +758,13 @@ const budgetProgress =
 
       {/* Sidebar */}
 
-      <aside className="fixed left-0 top-0 z-20 hidden h-screen w-64 border-r border-emerald-900/10 bg-white/95 shadow-sm md:block">
+      <aside className="fixed left-0 top-0 z-20 hidden h-screen w-64 flex-col overflow-y-auto border-r border-emerald-900/10 bg-white/95 shadow-sm md:flex">
 
-        <div className="border-b border-emerald-900/10 p-6">
+        <div className="border-b border-emerald-900/10 p-4">
 
           <Link to="/" className="flex items-center gap-3">
 
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#087F5B] text-xl font-black text-white shadow-lg shadow-emerald-900/15">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#087F5B] text-lg font-black text-white shadow-lg shadow-emerald-900/15">
 
               F
 
@@ -810,7 +772,7 @@ const budgetProgress =
 
             <div>
 
-              <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">
+              <h1 className="text-xl font-extrabold tracking-tight text-slate-900">
 
                 Finance<span className="text-[#087F5B]">AI</span>
 
@@ -824,13 +786,13 @@ const budgetProgress =
 
         </div>
 
-        <nav className="space-y-2 px-4 py-6">
+        <nav className="space-y-1 px-3 py-4">
 
           <Link
 
             to="/dashboard"
 
-            className="flex items-center gap-3 rounded-xl border border-emerald-800/10 bg-emerald-50 px-4 py-3 font-semibold text-[#087F5B]"
+            className="flex items-center gap-2 rounded-lg border border-emerald-800/10 bg-emerald-50 px-3 py-2 text-sm font-semibold text-[#087F5B]"
 
           >
 
@@ -888,7 +850,7 @@ const budgetProgress =
 
         </nav>
 
-        <div className="absolute bottom-6 left-4 right-4 rounded-2xl border border-emerald-800/10 bg-gradient-to-br from-emerald-50 to-[#FAF9F4] p-4">
+        <div className="mx-3 mb-4 mt-auto rounded-xl border border-emerald-800/10 bg-gradient-to-br from-emerald-50 to-[#FAF9F4] p-3">
 
           <p className="text-sm font-semibold text-slate-800">
 
@@ -896,7 +858,7 @@ const budgetProgress =
 
           </p>
 
-          <p className="mt-2 text-xs leading-5 text-slate-600">
+          <p className="mt-1 text-xs leading-4 text-slate-600">
 
             Track your spending and make every naira count.
 
@@ -1395,208 +1357,7 @@ const budgetProgress =
             See how much you have spent in each category.
 
           </p>
-          {/* FinanceAI Financial Intelligence Overview */}
-<div className="mt-6 space-y-6">
 
-  {/* Financial Summary */}
-  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-
-    <div className="rounded-2xl border border-emerald-900/10 bg-white p-5 shadow-sm">
-      <p className="text-sm font-medium text-slate-500">
-        Total Recorded Spending
-      </p>
-
-      <h3 className="mt-3 break-words text-2xl font-extrabold text-slate-900">
-        {money(totalExpenses)}
-      </h3>
-
-      <p className="mt-2 text-xs text-slate-500">
-        {expenses.length} recorded expenses
-      </p>
-    </div>
-
-    <div className="rounded-2xl border border-emerald-900/10 bg-white p-5 shadow-sm">
-      <p className="text-sm font-medium text-slate-500">
-        This Month
-      </p>
-
-      <h3 className="mt-3 break-words text-2xl font-extrabold text-slate-900">
-        {money(monthlySpending)}
-      </h3>
-
-      <p className="mt-2 text-xs text-slate-500">
-        Current month's spending
-      </p>
-    </div>
-
-    <div className="rounded-2xl border border-emerald-900/10 bg-white p-5 shadow-sm">
-      <p className="text-sm font-medium text-slate-500">
-        Budget Remaining
-      </p>
-
-      <h3 className={`mt-3 break-words text-2xl font-extrabold ${
-        budgetRemaining < 0 ? "text-red-600" : "text-[#087F5B]"
-      }`}>
-        {money(budgetRemaining)}
-      </h3>
-
-      <p className="mt-2 text-xs text-slate-500">
-        From your {money(monthlyBudget)} budget
-      </p>
-    </div>
-
-    <div className="rounded-2xl border border-emerald-900/10 bg-white p-5 shadow-sm">
-      <p className="text-sm font-medium text-slate-500">
-        Highest Spending Category
-      </p>
-
-      <h3 className="mt-3 break-words text-2xl font-extrabold text-slate-900">
-        {highestSpendingCategory?.[0] || "No expenses"}
-      </h3>
-
-      <p className="mt-2 text-xs text-slate-500">
-        {money(highestSpendingCategory?.[1] || 0)} recorded
-      </p>
-    </div>
-
-  </div>
-
-  {/* Budget Health */}
-  <div className="rounded-2xl border border-emerald-900/10 bg-white p-5 sm:p-6">
-
-    <div className="flex flex-wrap items-center justify-between gap-3">
-
-      <div>
-        <h4 className="font-bold text-slate-900">
-          Monthly Budget Health
-        </h4>
-
-        <p className="mt-1 text-sm text-slate-500">
-          Monitor your monthly spending against your budget.
-        </p>
-      </div>
-
-      <span className={`rounded-full px-3 py-1 text-xs font-bold ${
-        budgetRemaining < 0
-          ? "bg-red-100 text-red-700"
-          : budgetProgress >= 80
-            ? "bg-amber-100 text-amber-700"
-            : "bg-emerald-100 text-emerald-700"
-      }`}>
-        {budgetRemaining < 0
-          ? "Budget exceeded"
-          : budgetProgress >= 80
-            ? "Approaching limit"
-            : "Within budget"}
-      </span>
-
-    </div>
-
-    <div className="mt-5 flex items-center justify-between gap-3 text-sm">
-
-      <span className="font-semibold text-slate-700">
-        {money(monthlySpending)} spent
-      </span>
-
-      <span className="text-slate-500">
-        {budgetProgress.toFixed(1)}% used
-      </span>
-
-    </div>
-
-    <div className="mt-3 h-3 overflow-hidden rounded-full bg-slate-100">
-
-      <div
-        className={`h-full rounded-full transition-all duration-500 ${
-          budgetRemaining < 0
-            ? "bg-red-500"
-            : budgetProgress >= 80
-              ? "bg-amber-500"
-              : "bg-[#087F5B]"
-        }`}
-        style={{ width: `${budgetProgress}%` }}
-      />
-
-    </div>
-
-    <div className="mt-3 flex justify-between gap-3 text-xs text-slate-500">
-
-      <span>Remaining: {money(budgetRemaining)}</span>
-
-      <span>Budget: {money(monthlyBudget)}</span>
-
-    </div>
-
-  </div>
-
-  {/* Monthly Comparison */}
-  <div className="rounded-2xl border border-emerald-900/10 bg-white p-5 sm:p-6">
-
-    <h4 className="font-bold text-slate-900">
-      Monthly Spending Comparison
-    </h4>
-
-    <p className="mt-1 text-sm text-slate-500">
-      Compare your spending with the previous month.
-    </p>
-
-    <div className="mt-5 grid gap-4 sm:grid-cols-2">
-
-      <div className="rounded-xl bg-[#FAF9F4] p-4">
-        <p className="text-sm text-slate-500">
-          Previous Month
-        </p>
-
-        <h3 className="mt-2 text-xl font-bold text-slate-900">
-          {money(previousMonthSpending)}
-        </h3>
-      </div>
-
-      <div className="rounded-xl bg-[#FAF9F4] p-4">
-        <p className="text-sm text-slate-500">
-          Current Month
-        </p>
-
-        <h3 className="mt-2 text-xl font-bold text-slate-900">
-          {money(monthlySpending)}
-        </h3>
-      </div>
-
-    </div>
-
-    <div className="mt-4">
-
-      {monthlyChange === null ? (
-
-        <p className="text-sm text-slate-500">
-          No previous-month spending is available for comparison yet.
-        </p>
-
-      ) : (
-
-        <p className={`text-sm font-semibold ${
-          monthlyChange > 0
-            ? "text-amber-600"
-            : monthlyChange < 0
-              ? "text-[#087F5B]"
-              : "text-slate-500"
-        }`}>
-
-          {monthlyChange > 0
-            ? `Spending increased by ${Math.abs(monthlyChange).toFixed(1)}%.`
-            : monthlyChange < 0
-              ? `Spending decreased by ${Math.abs(monthlyChange).toFixed(1)}%.`
-              : "Your spending remained unchanged."}
-
-        </p>
-
-      )}
-
-    </div>
-
-  </div>
-
-</div>
           {/* Gemini AI spending insights */}
 
           <div className="mt-6 rounded-2xl border border-emerald-900/10 bg-gradient-to-br from-[#F0FDF4] to-[#FAF9F4] p-5 sm:p-6">
@@ -1629,7 +1390,7 @@ const budgetProgress =
 
                 type="button"
 
-                onClick={() => loadAIInsights()}
+                onClick={loadAIInsights}
 
                 disabled={aiLoading}
 
@@ -1671,7 +1432,7 @@ const budgetProgress =
 
                   type="button"
 
-                  onClick={() => loadAIInsights()}
+                  onClick={loadAIInsights}
 
                   className="mt-3 text-sm font-semibold text-[#087F5B] underline"
 
