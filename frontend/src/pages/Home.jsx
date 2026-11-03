@@ -47,50 +47,136 @@ function WomanIllustration() {
           <feGaussianBlur stdDeviation="12" />
         </filter>
 
-        <pattern id="fabricTexture" width="9" height="9" patternUnits="userSpaceOnUse">
-          <path d="M0 0 L9 9 M9 0 L0 9" stroke="#FFFFFF" strokeOpacity=".055" strokeWidth=".7" />
+        <pattern
+          id="fabricTexture"
+          width="9"
+          height="9"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M0 0 L9 9 M9 0 L0 9"
+            stroke="#FFFFFF"
+            strokeOpacity=".055"
+            strokeWidth=".7"
+          />
         </pattern>
       </defs>
 
       {/* Warm, sunlit room */}
-      <ellipse cx="300" cy="605" rx="205" ry="24" fill="#8D765B" opacity=".13" filter="url(#softShadow)" />
+      <ellipse
+        cx="300"
+        cy="605"
+        rx="205"
+        ry="24"
+        fill="#8D765B"
+        opacity=".13"
+        filter="url(#softShadow)"
+      />
 
       <rect x="35" y="55" width="220" height="230" rx="5" fill="#FFFFFF" opacity=".5" />
       <rect x="47" y="67" width="196" height="206" rx="3" fill="#E8E0CE" />
       <rect x="58" y="78" width="174" height="184" fill="#FCF9F1" />
 
       {/* Minimal framed botanical art */}
-      <path d="M148 238 C146 195 149 151 135 113" fill="none" stroke="#72916B" strokeWidth="3" />
-      <path d="M146 185 C113 182 99 160 105 137 C128 142 144 160 146 185Z" fill="#9AB58A" />
-      <path d="M148 160 C173 154 185 133 177 111 C155 123 145 142 148 160Z" fill="#688C65" />
-      <path d="M147 219 C175 213 190 193 185 176 C163 181 151 198 147 219Z" fill="#B7C5A1" />
+      <path
+        d="M148 238 C146 195 149 151 135 113"
+        fill="none"
+        stroke="#72916B"
+        strokeWidth="3"
+      />
+      <path
+        d="M146 185 C113 182 99 160 105 137 C128 142 144 160 146 185Z"
+        fill="#9AB58A"
+      />
+      <path
+        d="M148 160 C173 154 185 133 177 111 C155 123 145 142 148 160Z"
+        fill="#688C65"
+      />
+      <path
+        d="M147 219 C175 213 190 193 185 176 C163 181 151 198 147 219Z"
+        fill="#B7C5A1"
+      />
       <path d="M147 239 L194 239" stroke="#D9CDB8" strokeWidth="3" />
 
       {/* Houseplant in the background */}
-      <path d="M412 300 C410 235 394 194 380 174" fill="none" stroke="#678C60" strokeWidth="4" />
-      <path d="M405 260 C438 249 451 220 441 197 C416 209 404 232 405 260Z" fill="#80A879" />
-      <path d="M398 225 C366 214 356 189 369 168 C391 184 401 204 398 225Z" fill="#648A5C" />
-      <path d="M411 285 C446 278 462 251 453 232 C429 240 414 260 411 285Z" fill="#A5BD91" />
-      <path d="M400 300 C370 285 363 264 375 248 C395 260 402 280 400 300Z" fill="#75976C" />
+      <path
+        d="M412 300 C410 235 394 194 380 174"
+        fill="none"
+        stroke="#678C60"
+        strokeWidth="4"
+      />
+      <path
+        d="M405 260 C438 249 451 220 441 197 C416 209 404 232 405 260Z"
+        fill="#80A879"
+      />
+      <path
+        d="M398 225 C366 214 356 189 369 168 C391 184 401 204 398 225Z"
+        fill="#648A5C"
+      />
+      <path
+        d="M411 285 C446 278 462 251 453 232 C429 240 414 260 411 285Z"
+        fill="#A5BD91"
+      />
+      <path
+        d="M400 300 C370 285 363 264 375 248 C395 260 402 280 400 300Z"
+        fill="#75976C"
+      />
       <path d="M377 288 L430 288 L420 321 L388 321Z" fill="#C7A783" />
 
       {/* Sofa */}
-      <path d="M75 372 Q75 345 109 342 L426 342 Q473 347 477 389 L493 584 L51 584Z" fill="#D8C6AC" />
-      <path d="M78 385 Q78 356 109 355 L422 355 Q452 355 461 388 L475 558 L68 558Z" fill="#F1E5D3" />
-      <path d="M64 428 Q60 398 91 395 L133 401 L142 555 L72 555Z" fill="#C7B293" />
+      <path
+        d="M75 372 Q75 345 109 342 L426 342 Q473 347 477 389 L493 584 L51 584Z"
+        fill="#D8C6AC"
+      />
+      <path
+        d="M78 385 Q78 356 109 355 L422 355 Q452 355 461 388 L475 558 L68 558Z"
+        fill="#F1E5D3"
+      />
+      <path
+        d="M64 428 Q60 398 91 395 L133 401 L142 555 L72 555Z"
+        fill="#C7B293"
+      />
 
       {/* Decorative cushion */}
-      <path d="M61 399 Q57 381 78 372 L161 382 Q179 390 175 413 L162 488 Q158 503 139 495 L73 477 Q56 469 61 450Z" fill="#F7F0E4" />
-      <path d="M74 398 L150 411 M69 422 L147 440 M72 449 L140 465" stroke="#E2D5C1" strokeWidth="2" />
+      <path
+        d="M61 399 Q57 381 78 372 L161 382 Q179 390 175 413 L162 488 Q158 503 139 495 L73 477 Q56 469 61 450Z"
+        fill="#F7F0E4"
+      />
+      <path
+        d="M74 398 L150 411 M69 422 L147 440 M72 449 L140 465"
+        stroke="#E2D5C1"
+        strokeWidth="2"
+      />
 
       {/* Legs and trousers */}
-      <path d="M211 461 C190 498 176 534 158 573 C149 594 169 614 197 608 L286 590 C315 584 337 567 347 541 L370 475Z" fill="url(#trousers)" />
-      <path d="M299 459 C318 486 338 518 365 548 C383 568 411 575 431 563 L448 553 C458 546 453 530 439 521 L367 457Z" fill="#E9D8BE" />
-      <path d="M170 574 C204 575 245 567 281 550" fill="none" stroke="#C3AF91" strokeWidth="2" opacity=".7" />
-      <path d="M339 523 Q378 540 413 552" fill="none" stroke="#D1BFA4" strokeWidth="2" opacity=".7" />
+      <path
+        d="M211 461 C190 498 176 534 158 573 C149 594 169 614 197 608 L286 590 C315 584 337 567 347 541 L370 475Z"
+        fill="url(#trousers)"
+      />
+      <path
+        d="M299 459 C318 486 338 518 365 548 C383 568 411 575 431 563 L448 553 C458 546 453 530 439 521 L367 457Z"
+        fill="#E9D8BE"
+      />
+      <path
+        d="M170 574 C204 575 245 567 281 550"
+        fill="none"
+        stroke="#C3AF91"
+        strokeWidth="2"
+        opacity=".7"
+      />
+      <path
+        d="M339 523 Q378 540 413 552"
+        fill="none"
+        stroke="#D1BFA4"
+        strokeWidth="2"
+        opacity=".7"
+      />
 
       {/* Neck */}
-      <path d="M244 260 C247 291 235 316 214 329 L265 373 L325 325 C300 309 292 284 297 257Z" fill="url(#skin)" />
+      <path
+        d="M244 260 C247 291 235 316 214 329 L265 373 L325 325 C300 309 292 284 297 257Z"
+        fill="url(#skin)"
+      />
 
       {/* Natural textured hair behind head */}
       <path
@@ -106,7 +192,13 @@ function WomanIllustration() {
       />
 
       {/* Hair texture curls */}
-      <g fill="none" stroke="#604333" strokeWidth="5" strokeLinecap="round" opacity=".9">
+      <g
+        fill="none"
+        stroke="#604333"
+        strokeWidth="5"
+        strokeLinecap="round"
+        opacity=".9"
+      >
         <path d="M184 155 Q170 136 190 122 Q208 114 205 136" />
         <path d="M214 119 Q229 95 246 117 Q255 130 240 140" />
         <path d="M260 105 Q278 91 292 110 Q302 127 284 136" />
@@ -137,29 +229,73 @@ function WomanIllustration() {
       />
 
       {/* Soft face highlights */}
-      <path d="M200 179 C207 153 226 143 242 145" stroke="#E0A27B" strokeWidth="5" strokeLinecap="round" opacity=".45" fill="none" />
+      <path
+        d="M200 179 C207 153 226 143 242 145"
+        stroke="#E0A27B"
+        strokeWidth="5"
+        strokeLinecap="round"
+        opacity=".45"
+        fill="none"
+      />
       <ellipse cx="204" cy="221" rx="13" ry="19" fill="#C57D57" opacity=".25" />
       <ellipse cx="287" cy="221" rx="11" ry="17" fill="#6D392B" opacity=".15" />
 
       {/* Eyebrows */}
-      <path d="M202 189 Q216 179 230 188" stroke="#35211B" strokeWidth="5" strokeLinecap="round" fill="none" />
-      <path d="M260 187 Q276 177 289 187" stroke="#35211B" strokeWidth="5" strokeLinecap="round" fill="none" />
+      <path
+        d="M202 189 Q216 179 230 188"
+        stroke="#35211B"
+        strokeWidth="5"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M260 187 Q276 177 289 187"
+        stroke="#35211B"
+        strokeWidth="5"
+        strokeLinecap="round"
+        fill="none"
+      />
 
       {/* Eyes looking down at the phone */}
-      <path d="M202 200 Q215 210 229 199" stroke="#38231C" strokeWidth="3.2" strokeLinecap="round" fill="none" />
-      <path d="M261 198 Q275 208 289 195" stroke="#38231C" strokeWidth="3.2" strokeLinecap="round" fill="none" />
+      <path
+        d="M202 200 Q215 210 229 199"
+        stroke="#38231C"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M261 198 Q275 208 289 195"
+        stroke="#38231C"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+        fill="none"
+      />
       <ellipse cx="216" cy="201" rx="4" ry="3.5" fill="#241A15" />
       <ellipse cx="276" cy="199" rx="4" ry="3.5" fill="#241A15" />
       <circle cx="217" cy="200" r="1.2" fill="#FFFFFF" />
       <circle cx="277" cy="198" r="1.2" fill="#FFFFFF" />
 
       {/* Nose */}
-      <path d="M247 199 Q243 218 237 228 Q245 234 254 228" stroke="#79432E" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity=".85" />
+      <path
+        d="M247 199 Q243 218 237 228 Q245 234 254 228"
+        stroke="#79432E"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        fill="none"
+        opacity=".85"
+      />
 
       {/* Natural smile */}
       <path d="M224 247 Q247 268 271 244 Q249 255 224 247Z" fill="#6F2D2B" />
       <path d="M228 247 Q248 259 267 246 Q248 250 228 247Z" fill="#FFF0E1" />
-      <path d="M232 261 Q248 266 261 258" stroke="#B66A56" strokeWidth="2" strokeLinecap="round" fill="none" />
+      <path
+        d="M232 261 Q248 266 261 258"
+        stroke="#B66A56"
+        strokeWidth="2"
+        strokeLinecap="round"
+        fill="none"
+      />
 
       {/* Earrings */}
       <circle cx="189" cy="218" r="5" fill="#D6B56D" />
@@ -227,9 +363,27 @@ function WomanIllustration() {
       </g>
 
       {/* Sleeve folds */}
-      <path d="M162 367 Q181 382 193 409" stroke="#75A88A" strokeWidth="3" fill="none" opacity=".55" />
-      <path d="M331 369 Q311 391 306 420" stroke="#75A88A" strokeWidth="3" fill="none" opacity=".55" />
-      <path d="M142 433 Q165 446 183 445" stroke="#0B4936" strokeWidth="3" fill="none" opacity=".7" />
+      <path
+        d="M162 367 Q181 382 193 409"
+        stroke="#75A88A"
+        strokeWidth="3"
+        fill="none"
+        opacity=".55"
+      />
+      <path
+        d="M331 369 Q311 391 306 420"
+        stroke="#75A88A"
+        strokeWidth="3"
+        fill="none"
+        opacity=".55"
+      />
+      <path
+        d="M142 433 Q165 446 183 445"
+        stroke="#0B4936"
+        strokeWidth="3"
+        fill="none"
+        opacity=".7"
+      />
 
       {/* Forearms holding the phone */}
       <path
@@ -262,27 +416,79 @@ function WomanIllustration() {
         <rect x="239" y="410" width="24" height="3" rx="1.5" fill="#656B6C" />
 
         {/* Tiny expense interface on the phone */}
-        <text x="228" y="430" fontSize="6" fontWeight="bold" fill="#176548">FinanceAI</text>
-        <text x="228" y="441" fontSize="5" fill="#6B7280">This month</text>
-        <text x="228" y="453" fontSize="10" fontWeight="bold" fill="#1E293B">₦45,500</text>
-        <path d="M228 473 L237 466 L245 469 L253 457 L261 462 L273 450" stroke="#16845C" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M228 477 L237 470 L245 473 L253 461 L261 466 L273 454 L273 481 L228 481Z" fill="#A7E6C5" opacity=".4" />
+        <text x="228" y="430" fontSize="6" fontWeight="bold" fill="#176548">
+          FinanceAI
+        </text>
+        <text x="228" y="441" fontSize="5" fill="#6B7280">
+          This month
+        </text>
+        <text x="228" y="453" fontSize="10" fontWeight="bold" fill="#1E293B">
+          ₦45,500
+        </text>
+        <path
+          d="M228 473 L237 466 L245 469 L253 457 L261 462 L273 450"
+          stroke="#16845C"
+          strokeWidth="2"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M228 477 L237 470 L245 473 L253 461 L261 466 L273 454 L273 481 L228 481Z"
+          fill="#A7E6C5"
+          opacity=".4"
+        />
         <rect x="228" y="485" width="19" height="4" rx="2" fill="#D8EEE1" />
         <rect x="251" y="485" width="22" height="4" rx="2" fill="#E7E5DF" />
       </g>
 
       {/* Fingers resting naturally over the phone */}
-      <path d="M200 437 Q209 430 220 438 L239 454 Q245 460 239 466 Q234 470 228 465 L207 452Z" fill="#B8734E" />
-      <path d="M203 441 L224 458" stroke="#D69A71" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M298 443 Q288 437 279 447 L263 461 Q257 467 263 472 Q268 475 274 469 L292 457Z" fill="#A86443" />
-      <path d="M292 447 L274 464" stroke="#D69A71" strokeWidth="2.5" strokeLinecap="round" />
+      <path
+        d="M200 437 Q209 430 220 438 L239 454 Q245 460 239 466 Q234 470 228 465 L207 452Z"
+        fill="#B8734E"
+      />
+      <path
+        d="M203 441 L224 458"
+        stroke="#D69A71"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M298 443 Q288 437 279 447 L263 461 Q257 467 263 472 Q268 475 274 469 L292 457Z"
+        fill="#A86443"
+      />
+      <path
+        d="M292 447 L274 464"
+        stroke="#D69A71"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
 
       {/* Wrist jewellery */}
-      <path d="M181 433 Q188 428 194 433" stroke="#D7B66F" strokeWidth="3" fill="none" />
+      <path
+        d="M181 433 Q188 428 194 433"
+        stroke="#D7B66F"
+        strokeWidth="3"
+        fill="none"
+      />
 
       {/* Final highlights */}
-      <path d="M345 386 Q354 410 364 436" stroke="#80B398" strokeWidth="2" strokeLinecap="round" fill="none" opacity=".7" />
-      <path d="M148 452 Q165 463 188 464" stroke="#65967A" strokeWidth="2" strokeLinecap="round" fill="none" opacity=".65" />
+      <path
+        d="M345 386 Q354 410 364 436"
+        stroke="#80B398"
+        strokeWidth="2"
+        strokeLinecap="round"
+        fill="none"
+        opacity=".7"
+      />
+      <path
+        d="M148 452 Q165 463 188 464"
+        stroke="#65967A"
+        strokeWidth="2"
+        strokeLinecap="round"
+        fill="none"
+        opacity=".65"
+      />
     </svg>
   );
 }
@@ -291,7 +497,10 @@ function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#FAF9F4] text-slate-800">
       {/* Soft, bright background */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="absolute -left-32 top-28 h-96 w-96 rounded-full bg-emerald-200/40 blur-[110px]" />
         <div className="absolute right-0 top-20 h-[32rem] w-[32rem] rounded-full bg-amber-100/60 blur-[130px]" />
 
@@ -364,6 +573,13 @@ function Home() {
             >
               Log In
             </Link>
+
+            <Link
+              to="/demo"
+              className="rounded-xl border border-emerald-600/30 bg-emerald-50 px-7 py-3.5 font-semibold text-[#087F5B] transition hover:bg-emerald-100"
+            >
+              Explore Demo
+            </Link>
           </div>
 
           {/* Core features */}
@@ -372,7 +588,9 @@ function Home() {
               <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-800/15 bg-white/80 text-xl text-[#087F5B]">
                 ◫
               </div>
-              <h3 className="text-sm font-semibold text-slate-800">Track expenses</h3>
+              <h3 className="text-sm font-semibold text-slate-800">
+                Track expenses
+              </h3>
               <p className="mt-1 text-xs leading-5 text-slate-500">
                 Know where your money goes.
               </p>
@@ -382,7 +600,9 @@ function Home() {
               <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-800/15 bg-white/80 text-xl text-[#087F5B]">
                 ◷
               </div>
-              <h3 className="text-sm font-semibold text-slate-800">Manage budgets</h3>
+              <h3 className="text-sm font-semibold text-slate-800">
+                Manage budgets
+              </h3>
               <p className="mt-1 text-xs leading-5 text-slate-500">
                 Set budgets and stay on track.
               </p>
@@ -392,7 +612,9 @@ function Home() {
               <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-800/15 bg-white/80 text-xl text-[#087F5B]">
                 ↗
               </div>
-              <h3 className="text-sm font-semibold text-slate-800">Achieve goals</h3>
+              <h3 className="text-sm font-semibold text-slate-800">
+                Achieve goals
+              </h3>
               <p className="mt-1 text-xs leading-5 text-slate-500">
                 Build better habits for your future.
               </p>
@@ -407,31 +629,50 @@ function Home() {
           <div className="relative overflow-hidden rounded-[2rem] border border-white bg-gradient-to-br from-[#F5F0E4] via-[#E8F2E6] to-[#D7E9DA] shadow-[0_25px_90px_rgba(31,82,54,0.14)]">
             <div className="absolute inset-0 bg-gradient-to-t from-[#D5E4D2]/70 via-transparent to-white/20" />
 
+            {/* Hero image */}
             <div className="relative px-2 pt-4 sm:px-4 sm:pt-6">
               <img
-                src="/images/financeai-hero-woman.png"
+                src="/images/financeai-hero-woman.jpg"
                 alt="Woman using her phone to review her finances"
-                className="h-full w-full rounded-3xl object-cover object-center"
+                className="block h-auto w-full rounded-3xl object-cover object-center"
               />
             </div>
 
             {/* Floating financial summary */}
             <div className="absolute right-3 top-[37%] w-[156px] rounded-2xl border border-white/90 bg-white/95 p-3 shadow-xl backdrop-blur-md sm:right-4 sm:w-[190px] sm:p-4">
               <div className="flex items-center justify-between">
-                <p className="text-xs font-semibold text-slate-700">Overview</p>
-                <span className="text-[9px] text-slate-400">This month</span>
+                <p className="text-xs font-semibold text-slate-700">
+                  Overview
+                </p>
+                <span className="text-[9px] text-slate-400">
+                  This month
+                </span>
               </div>
 
-              <p className="mt-4 text-[10px] text-slate-500">Your spending</p>
-              <p className="mt-1 text-lg font-bold text-slate-900 sm:text-xl">On track</p>
+              <p className="mt-4 text-[10px] text-slate-500">
+                Your spending
+              </p>
+              <p className="mt-1 text-lg font-bold text-slate-900 sm:text-xl">
+                On track
+              </p>
 
               <div className="mt-3 flex items-center gap-1 text-[10px] font-medium text-emerald-700">
                 <span>✓</span>
                 <span>Stay within your budget</span>
               </div>
 
-              <svg viewBox="0 0 180 50" className="mt-3 w-full" fill="none" aria-label="Illustrative spending trend">
-                <path d="M2 39 C22 37 26 20 45 27 S70 37 87 24 S115 32 131 15 S157 18 178 4" stroke="#087F5B" strokeWidth="2.5" strokeLinecap="round" />
+              <svg
+                viewBox="0 0 180 50"
+                className="mt-3 w-full"
+                fill="none"
+                aria-label="Illustrative spending trend"
+              >
+                <path
+                  d="M2 39 C22 37 26 20 45 27 S70 37 87 24 S115 32 131 15 S157 18 178 4"
+                  stroke="#087F5B"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
               </svg>
 
               <div className="mt-3 border-t border-slate-100 pt-3">
@@ -465,7 +706,9 @@ function Home() {
               ✓
             </span>
             <div>
-              <h2 className="font-semibold text-slate-800">Know where it goes</h2>
+              <h2 className="font-semibold text-slate-800">
+                Know where it goes
+              </h2>
               <p className="mt-1 text-sm leading-6 text-slate-500">
                 Record expenses and understand your spending.
               </p>
@@ -477,7 +720,9 @@ function Home() {
               ◎
             </span>
             <div>
-              <h2 className="font-semibold text-slate-800">Plan with purpose</h2>
+              <h2 className="font-semibold text-slate-800">
+                Plan with purpose
+              </h2>
               <p className="mt-1 text-sm leading-6 text-slate-500">
                 Set a budget that supports your priorities.
               </p>
@@ -489,7 +734,9 @@ function Home() {
               ↗
             </span>
             <div>
-              <h2 className="font-semibold text-slate-800">Build better habits</h2>
+              <h2 className="font-semibold text-slate-800">
+                Build better habits
+              </h2>
               <p className="mt-1 text-sm leading-6 text-slate-500">
                 Take small steps toward financial confidence.
               </p>
@@ -498,6 +745,7 @@ function Home() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="relative z-10 border-t border-emerald-900/[0.08] px-6 py-6 text-center text-sm text-slate-500">
         © {new Date().getFullYear()} FinanceAI. Thoughtful money management.
       </footer>

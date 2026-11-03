@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 
-const API_URL = (import.meta.env.VITE_API_URL || "http://127.0.0.1:8001").replace(/\/$/, "");
+const API_URL = (import.meta.env.VITE_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
 
 const inputStyle =
   "mt-2 w-full rounded-xl border border-emerald-900/15 bg-white px-4 py-3 text-slate-800 outline-none placeholder:text-slate-400 transition focus:border-[#087F5B] focus:ring-2 focus:ring-emerald-600/15";

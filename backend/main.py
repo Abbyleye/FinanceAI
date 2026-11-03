@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 import os
 from datetime import date
 
@@ -8,6 +12,7 @@ from pydantic import BaseModel, Field, FiniteFloat, field_validator
 from sqlalchemy.orm import Session
 
 from auth import router as auth_router
+from ai_service import generate_spending_insights
 from database import Base, SessionLocal, engine
 from models import Expense, User
 from security import verify_access_token
@@ -24,6 +29,8 @@ Base.metadata.create_all(bind=engine)
 frontend_url = os.getenv("FRONTEND_URL", "").rstrip("/")
 
 allowed_origins = [
+    "http://localhost:4173",
+    "http://127.0.0.1:4173",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:5174",
@@ -248,3 +255,48 @@ def delete_expense(
         ) from error
 
     return {"message": "Expense deleted successfully"}
+
+@app.get("/ai/insights")
+def get_ai_insights(
+    budget: float | None = None,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+
+    expenses = (
+        db.query(Expense)
+        .filter(Expense.user_id == current_user.id)
+        .order_by(Expense.date.desc())
+        .all()
+    )
+
+    expense_data = [
+        {
+            "name": expense.name,
+            "amount": expense.amount,
+            "category": expense.category,
+            "date": expense.date.isoformat(),
+        }
+        for expense in expenses
+    ]
+
+    try:
+        insights = generate_spending_insights(
+            expense_data,
+            budget=budget,
+        )
+
+    except Exception as error:
+        print(f"AI insights generation failed: {type(error).__name__}")
+        raise HTTPException(
+            status_code=503,
+            detail=(
+                "AI insights are temporarily unavailable. "
+                "Please try again shortly."
+            ),
+        ) from error
+
+    return {
+        "insights": insights,
+        "expense_count": len(expense_data),
+    }

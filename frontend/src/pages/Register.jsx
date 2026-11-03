@@ -6,11 +6,49 @@ const API_URL = "http://127.0.0.1:8000";
 const inputStyle =
   "w-full rounded-xl border border-emerald-900/15 bg-white px-4 py-3 text-slate-800 outline-none placeholder:text-slate-400 transition focus:border-[#087F5B] focus:ring-2 focus:ring-emerald-600/15";
 
+function EyeIcon({ visible }) {
+  return visible ? (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-5 w-5"
+      aria-hidden="true"
+    >
+      <path d="M3 3l18 18" />
+      <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8" />
+      <path d="M9.9 5.2A11.4 11.4 0 0 1 12 5c5.5 0 9 7 9 7a15 15 0 0 1-3.1 3.9" />
+      <path d="M6.2 6.2C3.9 7.8 2 12 2 12s3.5 7 10 7a10.6 10.6 0 0 0 4-.8" />
+    </svg>
+  ) : (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-5 w-5"
+      aria-hidden="true"
+    >
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
 function Register() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -63,6 +101,8 @@ function Register() {
       setEmail("");
       setPassword("");
       setConfirmPassword("");
+      setShowPassword(false);
+      setShowConfirmPassword(false);
     } catch (err) {
       setError(
         err.message === "Failed to fetch"
@@ -157,18 +197,30 @@ function Register() {
                 Password
               </label>
 
-              <input
-                id="register-password"
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                placeholder="Create a password"
-                autoComplete="new-password"
-                minLength={8}
-                maxLength={128}
-                required
-                className={inputStyle}
-              />
+              <div className="relative">
+                <input
+                  id="register-password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  placeholder="Create a password"
+                  autoComplete="new-password"
+                  minLength={8}
+                  maxLength={128}
+                  required
+                  className={`${inputStyle} pr-12`}
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((previous) => !previous)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-pressed={showPassword}
+                  className="absolute inset-y-0 right-0 flex items-center justify-center px-4 text-slate-500 transition hover:text-[#087F5B] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#087F5B]"
+                >
+                  <EyeIcon visible={showPassword} />
+                </button>
+              </div>
 
               <p className="mt-2 text-xs text-slate-500">
                 Use at least 8 characters.
@@ -183,20 +235,38 @@ function Register() {
                 Confirm Password
               </label>
 
-              <input
-                id="register-confirm-password"
-                type="password"
-                value={confirmPassword}
-                onChange={(event) =>
-                  setConfirmPassword(event.target.value)
-                }
-                placeholder="Enter your password again"
-                autoComplete="new-password"
-                minLength={8}
-                maxLength={128}
-                required
-                className={inputStyle}
-              />
+              <div className="relative">
+                <input
+                  id="register-confirm-password"
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(event) =>
+                    setConfirmPassword(event.target.value)
+                  }
+                  placeholder="Enter your password again"
+                  autoComplete="new-password"
+                  minLength={8}
+                  maxLength={128}
+                  required
+                  className={`${inputStyle} pr-12`}
+                />
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setShowConfirmPassword((previous) => !previous)
+                  }
+                  aria-label={
+                    showConfirmPassword
+                      ? "Hide confirm password"
+                      : "Show confirm password"
+                  }
+                  aria-pressed={showConfirmPassword}
+                  className="absolute inset-y-0 right-0 flex items-center justify-center px-4 text-slate-500 transition hover:text-[#087F5B] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#087F5B]"
+                >
+                  <EyeIcon visible={showConfirmPassword} />
+                </button>
+              </div>
             </div>
 
             {error && (
