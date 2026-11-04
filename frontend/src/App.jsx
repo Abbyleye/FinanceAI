@@ -15,6 +15,16 @@ function ProtectedRoute({ children }) {
   return token ? children : <Navigate to="/login" replace />;
 }
 
+function FinancePage({ view }) {
+  return (
+    <ProtectedRoute>
+      <DashboardLayout>
+        <Dashboard view={view} />
+      </DashboardLayout>
+    </ProtectedRoute>
+  );
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -25,14 +35,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/dashboard" element={<FinancePage view="dashboard" />} />
+        <Route path="/expenses" element={<FinancePage view="expenses" />} />
+        <Route path="/budgets" element={<FinancePage view="budgets" />} />
+        <Route path="/insights" element={<FinancePage view="insights" />} />
 
         <Route
           path="/profile"
@@ -44,7 +50,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/settings"
           element={
@@ -55,6 +60,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import ReactMarkdown from "react-markdown";
 
@@ -82,9 +82,6 @@ const secondaryButtonStyle =
 
   "rounded-xl border border-emerald-900/15 bg-white px-5 py-3 font-semibold text-slate-700 transition hover:bg-emerald-50 disabled:cursor-not-allowed disabled:opacity-60";
 
-const navLinkStyle =
-
-  "flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-600 transition hover:bg-emerald-50 hover:text-[#087F5B]";
 
 function getToday() {
 
@@ -100,7 +97,7 @@ function getToday() {
 
 }
 
-function Dashboard() {
+function Dashboard({ view = "dashboard" }) {
 
   const navigate = useNavigate();
 
@@ -121,6 +118,7 @@ function Dashboard() {
   const [aiError, setAiError] = useState("");
 
   // Prevent an older AI response from replacing insights for a newer budget.
+
   const aiRequestId = useRef(0);
 
   const [balance, setBalance] = useState(() => {
@@ -272,6 +270,7 @@ function Dashboard() {
       const data = await response.json();
 
       // Ignore results from requests made with an older budget.
+
       if (requestId === aiRequestId.current) {
 
         setAiInsights(
@@ -571,6 +570,7 @@ function Dashboard() {
       resetExpenseForm();
 
       await loadExpenses();
+
       await loadAIInsights();
 
     } catch (err) {
@@ -636,6 +636,7 @@ function Dashboard() {
       setExpenseToDelete(null);
 
       await loadExpenses();
+
       await loadAIInsights();
 
     } catch (err) {
@@ -734,228 +735,34 @@ function Dashboard() {
 
   };
 
-  const handleLogout = () => {
-
-    sessionStorage.removeItem("financeai_access_token");
-
-    sessionStorage.removeItem("financeai_user");
-
-    navigate("/login", { replace: true });
-
-  };
-
   return (
-
-    <div className="min-h-screen bg-[#FAF9F4] text-slate-800">
-
+    <>
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-
         <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-emerald-100/60 blur-3xl" />
-
         <div className="absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-amber-100/40 blur-3xl" />
-
       </div>
 
-      {/* Sidebar */}
-
-      <aside className="fixed left-0 top-0 z-20 hidden h-screen w-64 flex-col overflow-y-auto border-r border-emerald-900/10 bg-white/95 shadow-sm md:flex">
-
-        <div className="border-b border-emerald-900/10 p-4">
-
-          <Link to="/" className="flex items-center gap-3">
-
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#087F5B] text-lg font-black text-white shadow-lg shadow-emerald-900/15">
-
-              F
-
-            </div>
-
-            <div>
-
-              <h1 className="text-xl font-extrabold tracking-tight text-slate-900">
-
-                Finance<span className="text-[#087F5B]">AI</span>
-
-              </h1>
-
-              <p className="text-xs text-slate-500">Your money, smarter.</p>
-
-            </div>
-
-          </Link>
-
-        </div>
-
-        <nav className="space-y-1 px-3 py-4">
-
-          <Link
-
-            to="/dashboard"
-
-            className="flex items-center gap-2 rounded-lg border border-emerald-800/10 bg-emerald-50 px-3 py-2 text-sm font-semibold text-[#087F5B]"
-
-          >
-
-            <span>◈</span> Dashboard
-
-          </Link>
-
-          <a href="#transactions" className={navLinkStyle}>
-
-            <span>↗</span> Expenses
-
-          </a>
-
-          <a href="#budget" className={navLinkStyle}>
-
-            <span>◎</span> Budgets
-
-          </a>
-
-          <a href="#insights" className={navLinkStyle}>
-
-            <span>▥</span> Insights
-
-          </a>
-
-          {/* New Profile link */}
-
-          <Link to="/profile" className={navLinkStyle}>
-
-            <span>♙</span> Profile
-
-          </Link>
-
-          {/* New Settings link */}
-
-          <Link to="/settings" className={navLinkStyle}>
-
-            <span>⚙</span> Settings
-
-          </Link>
-
-          <button
-
-            type="button"
-
-            onClick={handleLogout}
-
-            className={`${navLinkStyle} w-full text-left`}
-
-          >
-
-            <span>↪</span> Log Out
-
-          </button>
-
-        </nav>
-
-        <div className="mx-3 mb-4 mt-auto rounded-xl border border-emerald-800/10 bg-gradient-to-br from-emerald-50 to-[#FAF9F4] p-3">
-
-          <p className="text-sm font-semibold text-slate-800">
-
-            Smart money habits
-
-          </p>
-
-          <p className="mt-1 text-xs leading-4 text-slate-600">
-
-            Track your spending and make every naira count.
-
-          </p>
-
-        </div>
-
-      </aside>
-
-      {/* Main content */}
-
-      <main className="relative min-w-0 p-4 sm:p-6 md:ml-64 md:p-8 lg:p-10">
-
-        <div className="mb-8 flex items-center justify-between gap-3 md:hidden">
-
-          <Link to="/" className="flex items-center gap-3">
-
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#087F5B] font-black text-white">
-
-              F
-
-            </div>
-
-            <h1 className="text-xl font-extrabold text-slate-900">
-
-              Finance<span className="text-[#087F5B]">AI</span>
-
-            </h1>
-
-          </Link>
-
-          <div className="flex gap-2">
-
-            <Link
-
-              to="/profile"
-
-              aria-label="Profile"
-
-              className="rounded-lg border border-emerald-900/10 bg-white px-3 py-2 text-sm"
-
-            >
-
-              ♙
-
-            </Link>
-
-            <Link
-
-              to="/settings"
-
-              aria-label="Settings"
-
-              className="rounded-lg border border-emerald-900/10 bg-white px-3 py-2 text-sm"
-
-            >
-
-              ⚙
-
-            </Link>
-
-          </div>
-
-        </div>
-
-        {/* Header */}
-
+      <div className="relative min-w-0">
         <div className="flex flex-wrap items-center justify-between gap-4">
-
           <div>
-
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#087F5B]">
-
-              Your financial overview
-
+              {view === "dashboard" ? "Your financial overview" : `Manage your ${view}`}
             </p>
-
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-
-              Dashboard<span className="text-[#087F5B]">.</span>
-
+              {view === "dashboard" ? "Dashboard" : view.charAt(0).toUpperCase() + view.slice(1)}<span className="text-[#087F5B]">.</span>
             </h2>
-
             <p className="mt-2 text-sm text-slate-600 sm:text-base">
-
-              Welcome back! Here&apos;s an overview of your finances.
-
+              {view === "dashboard" && "Welcome back! Here's an overview of your finances."}
+              {view === "expenses" && "Record, search, review and manage your expenses."}
+              {view === "budgets" && "Set your monthly spending limit and monitor your progress."}
+              {view === "insights" && "Understand your spending patterns and get practical guidance."}
             </p>
-
           </div>
-
-          <button type="button" onClick={openExpenseForm} className={buttonStyle}>
-
-            + Add Expense
-
-          </button>
-
+          {view === "dashboard" && (
+            <button type="button" onClick={() => navigate("/expenses")} className={buttonStyle}>
+              Manage Expenses
+            </button>
+          )}
         </div>
 
         {error && (
@@ -992,6 +799,7 @@ function Dashboard() {
 
         {/* Summary cards */}
 
+        {view === "dashboard" && (
         <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
           <div className="relative overflow-hidden rounded-2xl border border-emerald-800/15 bg-gradient-to-br from-[#087F5B] via-[#087F5B] to-[#065F46] p-6 text-white shadow-lg shadow-emerald-950/10">
@@ -1196,8 +1004,11 @@ function Dashboard() {
 
         </div>
 
+        )}
+
         {/* Monthly budget */}
 
+        {view === "budgets" && (
         <section id="budget" className={`${cardStyle} mt-8 scroll-mt-6`}>
 
           <div className="flex flex-wrap items-center justify-between gap-4">
@@ -1344,8 +1155,11 @@ function Dashboard() {
 
         </section>
 
+        )}
+
         {/* Spending by category */}
 
+        {view === "insights" && (
         <section id="insights" className={`${cardStyle} mt-8 scroll-mt-6`}>
 
           <p className="text-sm font-semibold text-[#087F5B]">UNDERSTAND YOUR MONEY</p>
@@ -1447,41 +1261,77 @@ function Dashboard() {
             ) : (
 
               <div className="mt-5 break-words text-sm leading-7 text-slate-700">
+
                 <ReactMarkdown
+
                   components={{
+
                     h1: ({ children }) => (
+
                       <h1 className="mb-3 mt-5 text-xl font-bold text-slate-900 first:mt-0">
+
                         {children}
+
                       </h1>
+
                     ),
+
                     h2: ({ children }) => (
+
                       <h2 className="mb-3 mt-5 text-lg font-bold text-slate-900 first:mt-0">
+
                         {children}
+
                       </h2>
+
                     ),
+
                     h3: ({ children }) => (
+
                       <h3 className="mb-2 mt-4 text-base font-bold text-slate-900">
+
                         {children}
+
                       </h3>
+
                     ),
+
                     p: ({ children }) => (
+
                       <p className="mb-3 leading-7 last:mb-0">{children}</p>
+
                     ),
+
                     ul: ({ children }) => (
+
                       <ul className="mb-4 list-disc space-y-2 pl-6">{children}</ul>
+
                     ),
+
                     ol: ({ children }) => (
+
                       <ol className="mb-4 list-decimal space-y-2 pl-6">{children}</ol>
+
                     ),
+
                     li: ({ children }) => <li className="pl-1">{children}</li>,
+
                     strong: ({ children }) => (
+
                       <strong className="font-bold text-slate-900">{children}</strong>
+
                     ),
+
                   }}
+
                 >
+
                   {aiInsights || "Your personalized spending insights will appear here."}
+
                 </ReactMarkdown>
+
               </div>
+
             )}
 
           </div>
@@ -1580,8 +1430,11 @@ function Dashboard() {
 
         </section>
 
+        )}
+
         {/* Recent transactions */}
 
+        {view === "expenses" && (
         <section id="transactions" className={`${cardStyle} mt-8 scroll-mt-6`}>
 
           <div className="flex flex-wrap items-center justify-between gap-4">
@@ -1876,13 +1729,15 @@ function Dashboard() {
 
         </section>
 
+        )}
+
         <footer className="py-8 text-center text-xs text-slate-500">
 
           FinanceAI · Make smarter decisions with your money.
 
         </footer>
 
-      </main>
+      </div>
 
       {/* Delete confirmation */}
 
@@ -1962,7 +1817,7 @@ function Dashboard() {
 
       )}
 
-    </div>
+    </>
 
   );
 
