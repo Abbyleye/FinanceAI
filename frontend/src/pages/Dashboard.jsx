@@ -1390,7 +1390,7 @@ function Dashboard() {
 
                 type="button"
 
-                onClick={loadAIInsights}
+                onClick={() => loadAIInsights(monthlyBudget)}
 
                 disabled={aiLoading}
 
@@ -1432,7 +1432,7 @@ function Dashboard() {
 
                   type="button"
 
-                  onClick={loadAIInsights}
+                  onClick={() => loadAIInsights(monthlyBudget)}
 
                   className="mt-3 text-sm font-semibold text-[#087F5B] underline"
 
