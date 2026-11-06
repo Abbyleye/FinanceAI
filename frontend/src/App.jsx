@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -9,6 +10,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Demo from "./pages/Demo";
+import PWAUpdatePrompt from "./PWAUpdatePrompt";
+import PWAInstallPrompt from "./PWAInstallPrompt";
 
 function ProtectedRoute({ children }) {
   const token = sessionStorage.getItem("financeai_access_token");
@@ -28,6 +31,9 @@ function FinancePage({ view }) {
 function App() {
   return (
     <BrowserRouter>
+      <PWAUpdatePrompt />
+      <PWAInstallPrompt />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/demo" element={<Demo />} />

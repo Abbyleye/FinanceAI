@@ -1,6 +1,10 @@
+
 from unittest.mock import Mock
 
 from fastapi.testclient import TestClient
+
+from database import SessionLocal
+from models import User
 
 
 def register_user(
@@ -37,6 +41,21 @@ def login_user(
 
 def auth_headers(token: str):
     return {"Authorization": f"Bearer {token}"}
+
+
+def set_user_role(email: str, role: str):
+    """Change a user's role in the isolated test database."""
+    db = SessionLocal()
+
+    try:
+        user = db.query(User).filter(User.email == email).first()
+
+        assert user is not None, f"Test user {email} was not found."
+
+        user.role = role
+        db.commit()
+    finally:
+        db.close()
 
 
 def test_health_endpoint_is_public(client):
@@ -299,7 +318,9 @@ def test_ai_insights_only_receive_current_users_expenses(
         },
     )
 
-    mock_generator = Mock(return_value="Your spending is within budget.")
+    mock_generator = Mock(
+        return_value="Your spending is within budget."
+    )
 
     monkeypatch.setattr(
         main,
@@ -320,3 +341,87 @@ def test_ai_insights_only_receive_current_users_expenses(
     assert len(expenses_sent_to_ai) == 1
     assert expenses_sent_to_ai[0]["name"] == "Groceries"
     assert expenses_sent_to_ai[0]["category"] == "Food"
+
+
+def test_regular_user_cannot_access_admin_overview(client):
+    register_user(client)
+
+    token = login_user(client).json()["access_token"]
+
+    response = client.get(
+        "/admin/overview",
+        headers=auth_headers(token),
+    )
+
+    assert response.status_code == 403
+    assert response.json()["detail"] == "Administrator access required."
+
+
+def test_admin_can_access_admin_overview(client):
+    register_user(client)
+
+    set_user_role("user@example.com", "admin")
+
+    token = login_user(client).json()["access_token"]
+
+    response = client.get(
+        "/admin/overview",
+        headers=auth_headers(token),
+    )
+
+    assert response.status_code == 200
+    assert response.json()["total_users"] == 1
+    assert response.json()["active_users"] == 1
+def test_regular_user_cannot_view_administrators(client):
+    register_user(client)
+
+    token = login_user(client).json()["access_token"]
+
+    response = client.get(
+        "/admin/administrators",
+        headers=auth_headers(token),
+    )
+
+    assert response.status_code == 403
+    assert response.json()["detail"] == (
+        "Super administrator access required."
+    )
+
+
+def test_admin_cannot_view_administrators(client):
+    register_user(client)
+
+    set_user_role("user@example.com", "admin")
+
+    token = login_user(client).json()["access_token"]
+
+    response = client.get(
+        "/admin/administrators",
+        headers=auth_headers(token),
+    )
+
+    assert response.status_code == 403
+
+
+def test_super_admin_can_view_administrators(client):
+    register_user(client)
+
+    set_user_role("user@example.com", "super_admin")
+
+    token = login_user(client).json()["access_token"]
+
+    response = client.get(
+        "/admin/administrators",
+        headers=auth_headers(token),
+    )
+
+    assert response.status_code == 200
+
+    administrators = response.json()["administrators"]
+
+    assert len(administrators) == 1
+    assert administrators[0]["email"] == "user@example.com"
+    assert administrators[0]["role"] == "super_admin"
+
+    assert "password" not in administrators[0]
+    assert "password_hash" not in administrators[0]
